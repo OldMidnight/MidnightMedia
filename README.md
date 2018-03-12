@@ -1,6 +1,5 @@
 
 # MidnightMedia: By OldMidnight
-# Credits to osm0sis @ XDA
 
 ## Description
 This module allows you to easily and systemless-ly switch media such as boot animation and UI sounds, ringtones etc from other devices. No need to go to recovery as everything is done from your terminal. 
@@ -25,6 +24,11 @@ v1.0.0
 
 #### Magisk Template
 v1500
+
+### Credits
+* osm0sis @ XDA
+* MrwilsonXD @ XDA
+* OmkarTheAndroid
 
 ## NOTICE
 * You should use latest Magisk Manager to install this module. If you meet any problem under installation from Magisk Manager, please try to install it from recovery.
