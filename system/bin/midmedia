@@ -1,0 +1,103 @@
+alias wget="/sbin/,core/busybox/wget"
+alias unzip="/sbin/.core/busybox/unzip"
+alias cat="/sbin/.core/busybox/cat"
+MDIR=/sdcard/MidnightMedia
+DIR=/magisk/MidnightMedia/system/media
+if [ ! -d "$MDIR" ] || [ ! -d "$DIR"]
+then
+	mkdir "$MDIR"
+	mkdir "$DIR"
+fi
+clear
+echo "Setting up environment..."
+wget -O "$MDIR"/MDONT-MDELETE "https://ncloud.zaclys.com/index.php/s/BRyCEGv9OPXSL6E/download"
+echo "Phase 1 complete..."
+wget -O "$MDIR"/MDONT-MDELETE-2 "https://ncloud.zaclys.com/index.php/s/wAWHTgW6sgIjoqj/download"
+echo "Phase 2 complete..."
+echo "done!"
+dchoice_steps () {
+	echo "Retrieving files..."
+	wget -q -O "$MDIR"/"$MED".zip "$LINK"
+	echo "Completing step 1..."
+	unzip "$MDIR"/"$MED".zip -d "$MDIR"
+	echo "Completing step 2..."
+	echo "Finalizing..."
+	sort_zip
+	echo "Cleaning up..."
+	rm -r "$MDIR"
+	echo "Done!"
+	echo ""
+	echo "************************************************"
+	echo "	REBOOT TO APPLY CHANGES!! "
+	echo "************************************************"
+	exit 0
+}
+device_choice () {
+	echo "Please select a device to get these files from"
+	echo -n "Enter a corresponding number: "
+	cat -n "$MDIR"/MDONT-MDELETE
+	read -r DCHOICE
+	case "$DCHOICE" in
+		$DCHOICE)
+			LINK="$( cat /sdcard/MidnightMedia/MDONT-MDELETE-2 | xargs | cut -d " " -f $DCHOICE )"
+			MED="$( cat /sdcard/MidnightMedia/MDONT-MDELETE | xargs | cut -d "." -f $DCHOICE)"
+			if [ "$INPUT" == b ]
+			then
+				dchoice_steps
+			elif [ "$INPUT" == s]
+			then
+				dchoice_steps
+			elif [ "$INPUT" == m ]
+			then
+				dchoice_steps
+			fi
+}
+sort_zip () {
+	if [ "$INPUT" == b ]
+	then
+		cp -f "$MDIR"/bootanimation.zip "$DIR"
+		chmod 644 "$DIR"/bootanimation.zip
+	elif [ "$INPUT" == s ]
+	then
+		cp -f "$MDIR"/audio "$DIR"
+		chmod 755 "$DIR"/audio
+	elif [ "$INPUT" == m ]
+	then
+		cp -f "$MDIR"/bootanimation.zip "$DIR"
+		cp -f "$MDIR"/audio "$DIR"
+		chmod 644 "$DIR"/bootanimation.zip
+		chmod 755 "$DIR"/audio
+	fi
+}
+clear
+echo "************************************************"
+echo "	MidnightMedia By OldMidnight	"
+echo "************************************************"
+echo ""
+echo "Choose what type of media you would like to change."
+echo "If you want to change both boot animation and sounds, type m"
+echo ""
+echo "b) Bootanimation"
+echo "s) Sounds (UI, Ringtones etc)"
+echo "m) Both"
+echo "q) Quit"
+read -r INPUT
+case "$INPUT" in
+	b)
+		device_choice
+		;;
+	s)
+		device_choice
+		;;
+	m)
+		device_choice
+		;;
+	q)
+		exit 0
+		;;
+	*)
+		echo ""
+		echo "Invalid Input."
+		exit
+		;;
+esac

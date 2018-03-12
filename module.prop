@@ -1,0 +1,7 @@
+id=MidnightMedia
+name=MidnightMedia
+version=v1.0.0
+versionCode=1
+author=OldMidnight
+description=This module allows you to easily and systemless-ly switch media such as boot animation and UI sounds, ringtones etc from other devices. No need to go to recovery as everything is done from your terminal
+minMagisk=1500
