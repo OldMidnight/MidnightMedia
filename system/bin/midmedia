@@ -10,9 +10,9 @@ then
 fi
 clear
 echo "Setting up environment..."
-wget -O "$MDIR"/MDONT-MDELETE "https://ncloud.zaclys.com/index.php/s/BRyCEGv9OPXSL6E/download"
+wget -O "$MDIR"/MDONT-MDELETE "https://ncloud.zaclys.com/index.php/s/YxOhvIKqP45GT3E/download"
 echo "Phase 1 complete..."
-wget -O "$MDIR"/MDONT-MDELETE-2 "https://ncloud.zaclys.com/index.php/s/wAWHTgW6sgIjoqj/download"
+wget -O "$MDIR"/MDONT-MDELETE-2 "https://ncloud.zaclys.com/index.php/s/OOPDZhQwOrxrll2/download"
 echo "Phase 2 complete..."
 echo "done!"
 dchoice_steps () {
