@@ -1,9 +1,9 @@
-alias wget="/sbin/,core/busybox/wget"
+alias wget="/sbin/.core/busybox/wget"
 alias unzip="/sbin/.core/busybox/unzip"
 alias cat="/sbin/.core/busybox/cat"
 MDIR=/sdcard/MidnightMedia
 DIR=/magisk/MidnightMedia/system/media
-if [ ! -d "$MDIR" ] || [ ! -d "$DIR"]
+if [ ! -d "$MDIR" ] || [ ! -d "$DIR" ]
 then
 	mkdir "$MDIR"
 	mkdir "$DIR"
@@ -36,21 +36,23 @@ device_choice () {
 	echo "Please select a device to get these files from"
 	echo -n "Enter a corresponding number: "
 	cat -n "$MDIR"/MDONT-MDELETE
-	read -r DCHOICE
-	case "$DCHOICE" in
-		$DCHOICE)
-			LINK="$( cat /sdcard/MidnightMedia/MDONT-MDELETE-2 | xargs | cut -d " " -f $DCHOICE )"
-			MED="$( cat /sdcard/MidnightMedia/MDONT-MDELETE | xargs | cut -d "." -f $DCHOICE)"
+	read -r CHOICE
+	case "$CHOICE" in
+		$CHOICE)
+			LINK="$( cat /sdcard/MidnightMedia/'MDONT-MDELETE-2' | xargs | cut -d " " -f $CHOICE )"
+			MED="$( cat /sdcard/MidnightMedia/'MDONT-MDELETE' | xargs | cut -d "." -f $CHOICE)"
 			if [ "$INPUT" == b ]
 			then
 				dchoice_steps
-			elif [ "$INPUT" == s]
+			elif [ "$INPUT" == s ]
 			then
 				dchoice_steps
 			elif [ "$INPUT" == m ]
 			then
 				dchoice_steps
 			fi
+			;;
+	esac
 }
 sort_zip () {
 	if [ "$INPUT" == b ]
